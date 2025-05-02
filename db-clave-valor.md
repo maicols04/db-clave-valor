@@ -10,7 +10,7 @@ Caso de uso
 
 Redis
 
----------------------
+
 
 Introducción:
 
@@ -27,7 +27,7 @@ Almacenamiento de sesiones (por ejemplo, en aplicaciones web).
 
 Redis guarda los datos directamente en la RAM, lo que lo hace mucho más rápido que las bases de datos tradicionales (como MySQL o PostgreSQL).
 
----------------------
+
 
 
 Explicación DDL
@@ -62,7 +62,7 @@ SADD conjunto elemento1 [elemento2 ...]
 Ejemplo:
 SADD frutas "manzana" "pera"
 
----------------------
+
 
 
 Explicación DML(Data Manipulation Language):
@@ -104,7 +104,7 @@ HDEL clave campo [campo2 ...]
 Ejemplo:
 HDEL usuario edad
 
----------------------
+
 
 
 Problemas de la instalación:
@@ -123,7 +123,7 @@ Esto pasa cuando no se añade correctamente a las variables del sistema.
 Error de firewall o red (modo remoto)
 Si quieres conectarte desde otra máquina, debes configurar Redis para aceptar conexiones externas (editar redis.conf y permitir tu IP).
 
----------------------
+
 
 
 Demostración práctica:
@@ -169,22 +169,22 @@ Resultado esperado:
 
 Amazon DynamoDB: Juan José
 
----------------------
+
 
 
 Explicación DDL
 
----------------------
+
 
 
 Explicación DML
 
----------------------
+
 
 
 Problemas de la instalación
 
----------------------
+
 
 
 Demostración práctica
@@ -194,7 +194,7 @@ Demostración práctica
 
 Etcd
 
----------------------
+
 
 
 Introducción:
@@ -212,7 +212,7 @@ Almacenamiento de estado en sistemas como Kubernetes.
 
 Etcd mantiene todos sus datos en memoria pero los persiste en disco, lo que garantiza durabilidad incluso después de reinicios. A diferencia de Redis, está optimizado para mantener la coherencia entre múltiples nodos usando el algoritmo de consenso Raft.
 
----------------------
+
 
 
 Explicación DDL
@@ -232,7 +232,7 @@ Ejemplo: etcdctl put config/app/puerto "8080"
 
 Esto crea una “clave” que puede ser vista como parte de una estructura jerárquica.
 
----------------------
+
 
 
 Explicación DML (Lenguaje de manipulación de datos):
@@ -266,7 +266,7 @@ Sintaxis: etcdctl del prefijo --prefix
 
 Ejemplo: etcdctl del config/ --prefix
 
----------------------
+
 
 
 Problemas de la instalación:
@@ -283,7 +283,7 @@ Conflicto de puertos: Usa los puertos 2379 (cliente) y 2380 (peer). Si ya están
 
 Configuración de red: Para usar en modo clúster, requiere configuración adecuada del archivo de inicio con los nombres y direcciones IP de los nodos.
 
----------------------
+
 
 
 Demostración práctica
@@ -316,22 +316,22 @@ Resultado esperado: (no muestra nada, ya no existe)
 
 Oracle: Juliana
 
----------------------
+
 
 
 Explicación DDL
 
----------------------
+
 
 
 Explicación DML
 
----------------------
+
 
 
 Problemas de la instalación
 
----------------------
+
 
 
 Demostración práctica
@@ -341,22 +341,22 @@ Demostración práctica
 
 Microsoft Azure Cosmos: Jorge
 
----------------------
+
 
 
 Explicación DDL
 
----------------------
+
 
 
 Explicación DML
 
----------------------
+
 
 
 Problemas de la instalación
 
----------------------
+
 
 
 Demostración práctica
@@ -366,22 +366,22 @@ Demostración práctica
 
 Memcached: Santiago
 
----------------------
+
 
 
 Explicación DDL
 
----------------------
+
 
 
 Explicación DML
 
----------------------
+
 
 
 Problemas de la instalación
 
----------------------
+
 
 
 Demostración práctica
