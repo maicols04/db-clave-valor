@@ -315,53 +315,252 @@ Resultado esperado: (no muestra nada, ya no existe)
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Oracle: Juliana
+Oracle NoSQL
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Introducción
+
+Oracle NoSQL Database es un sistema de gestión de bases de datos NoSQL desarrollado por Oracle Corporation, diseñado para manejar grandes volúmenes de datos no estructurados o semi-estructurados con alta escalabilidad, baja latencia y disponibilidad continua. A diferencia de las bases de datos relacionales tradicionales, Oracle NoSQL permite almacenar datos en un formato flexible como clave-valor, lo cual es ideal para aplicaciones modernas que requieren rendimiento en tiempo real, como IoT, comercio electrónico, análisis en tiempo real y servicios en la nube.
+
+-
 
 Explicación DDL
 
--
+En Oracle NoSQL, el DDL (Data Definition Language) es fundamental para definir la estructura de la base de datos, incluyendo la creación, modificación y eliminación de objetos como tablas y esquemas. Es una parte esencial del manejo de datos en la plataforma.
+Tipos de objetos:
+El DDL en Oracle NoSQL trabaja con tablas, esquemas, y otros objetos de la base de datos.
+Conceptos clave del DDL en Oracle NoSQL:
 
+Creación:
+Se utiliza para crear tablas, esquemas y otros objetos de base de datos.
+Ejemplo:
+CREATE TABLE usuarios (id INT, nombre VARCHAR(255), email VARCHAR(255));
+
+Modificación:
+Permite cambiar la estructura de los objetos, como agregar o eliminar columnas, o cambiar el tipo de datos de una columna.
+Ejemplo:
+ALTER TABLE usuarios
+ADD COLUMN edad INT;
+
+Eliminación:
+Se utiliza para borrar objetos de la base de datos, como tablas o esquemas.
+Ejemplo:
+DROP TABLE usuarios;
+
+Ver todas las tablas:
+SHOW TABLES;
+
+Describir una tabla:
+DESCRIBE TABLE usuarios;
+
+-
 
 Explicación DML
 
--
+En Oracle NoSQL, el DML (Data Manipulation Language) no funciona con comandos SQL tradicionales como INSERT, UPDATE, DELETE, SELECT. En su lugar, estas operaciones se realizan mediante llamadas a métodos de su API (en Java, Python, etc.), ya que Oracle NoSQL está diseñado como una base de datos clave-valor distribuida, no relacional.
+Sin embargo, las operaciones de DML sí existen, solo que tienen otra forma de ejecutarse.
 
+Insertar: Inserta un nuevo registro
+Sintaxis:
+PutRequest
+
+Actualizar: Igual que en la inserción; reemplaza el valor existente si la clave coincide
+Sintaxis:
+PutRequest
+
+Borrar: Elimina un registro por clave primaria.
+Sintaxis:
+DeleteRequest
+
+Consultar: Recupera registros por clave o mediante consulta
+Sintaxis:
+GetRequest ó QueryRequest
+
+-
 
 Problemas de la instalación
 
--
+Compatibilidad del sistema operativo
+Oracle NoSQL está diseñado para Linux.
+Problema: No existe soporte nativo para Windows.
+Solución: Usar WSL (Windows Subsystem for Linux), máquinas virtuales o contenedores Docker.
 
+Dependencia de Java
+Oracle NoSQL requiere Java 8 o superior.
+Problemas comunes:
+Java no instalado o mal configurado (JAVA_HOME)
+Versiones incompatibles
+Solución: Verificar java -version y definir correctamente las variables de entorno.
+
+Problemas con scripts y permisos
+Scripts como startstore.sh o kvlite.sh requieren Bash y permisos de ejecución.
+Problema: En sistemas como Windows, estos scripts pueden fallar.
+Solución: Usar Bash (Git Bash, WSL) y otorgar permisos (chmod +x script.sh).
+
+Configuración de nodos y topología
+En instalaciones de clúster, errores de configuración pueden evitar que los nodos se comuniquen correctamente.
+Problemas comunes:
+IPs mal definidas
+Conflictos de zona
+Solución: Revisar cuidadosamente el archivo de configuración de la topología.
+
+Recursos insuficientes
+Oracle NoSQL puede requerir varios GB de RAM y espacio en disco, especialmente en clústeres.
+Problema: Fallos por falta de memoria o espacio.
+Solución: Ejecutarlo en entornos con recursos adecuados.
+
+-
 
 Demostración práctica
 
+// Supongamos que ya tienes configurado el acceso a Oracle NoSQL
+NoSQLHandle db = conectarAlServicio();
+
+// Insertar un valor
+db.put("usuario:001", "Laura");
+
+// Leer el valor
+String nombre = db.get("usuario:001");
+System.out.println("Nombre guardado: " + nombre);
+
+// Actualizar el valor
+db.put("usuario:001", "Laura Martínez");
+
+// Eliminar el valor
+db.delete("usuario:001");
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Microsoft Azure Cosmos: Jorge
+Hazelcast
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Introcducción:
+
+Hazelcast es un Data Grid en memoria, distribuido y de código abierto, utilizado principalmente para almacenar y gestionar datos en memoria (RAM) a través de múltiples nodos. Es especialmente útil para aplicaciones que necesitan alta disponibilidad y bajo tiempo de respuesta. Aunque Hazelcast se puede utilizar como una base de datos NoSQL, no está diseñado para ser un sistema de almacenamiento persistente como MySQL o MongoDB, sino que trabaja en memoria para operaciones rápidas. 
+
+Algunas de sus aplicaciones comunes son:
+
+Cacheo distribuido (almacenamiento de datos temporales)
+
+Sesiones de usuario en aplicaciones web
+
+Procesamiento de datos en tiempo real
+
+Colas distribuidas para microservicios
+
+-
 
 Explicación DDL
 
--
+En Hazelcast, no existe un lenguaje específico para definir estructuras de datos como en las bases de datos tradicionales. El concepto de DDL en Hazelcast se refiere más a crear e inicializar las estructuras de datos distribuidas dentro del clúster. Algunas de estas estructuras son:
 
+IMap: Similar a un mapa clave-valor en memoria.
+
+IQueue: Cola distribuida para almacenar elementos en orden.
+
+IList: Lista distribuida similar a un array, pero distribuido entre los nodos.
+
+ISet: Conjunto distribuido que garantiza que no haya valores duplicados.
+
+Ejemplo:
+
+HazelcastInstance hazelcast = Hazelcast.newHazelcastInstance();
+IMap<String, String> mapa = hazelcast.getMap("usuarios"); --> Para crear un mapa distribuida
+IQueue<String> cola = hazelcast.getQueue("tareas"); --> Para crear una cola distribuida
+
+-
 
 Explicación DML
 
--
+Hazelcast también tiene comandos DML que te permiten manipular (consultar, modificar o eliminar) los datos que ya están almacenados en sus estructuras distribuidas.
 
+put: Inserta o actualiza una clave en un mapa distribuido.
+Ejemplo:
+mapa.put("u001", "Juan");
+mapa.put("u002", "Ana");
+
+get: Consulta el valor asociado a una clave.
+Ejemplo:
+String nombre = mapa.get("u001");
+Resultado esperado: "Juan"
+
+remove: Elimina una clave de una estructura.
+Ejemplo:
+mapa.remove("u002");
+
+clear: Limpia todos los elementos de una estructura.
+Ejemplo:
+mapa.clear();
+
+size: Obtiene el tamaño de una estructura de datos.
+Ejemplo:
+int tamaño = mapa.size();
+Resultado esperado: 1, porque como y se había eliminado "u002", sólo quedaría "u001"
+
+-
 
 Problemas de la instalación
 
--
+Puerto ocupado:
 
+Hazelcast usa por defecto el puerto 5701. Si está ocupado, puede causar problemas.
+
+Error al iniciar el clúster:
+
+Si los nodos del clúster no pueden comunicarse entre sí, hay que asegurarse de que los puertos necesarios (por defecto el 5701) no estén bloqueados por un firewall.
+
+Falta de permisos:
+
+Asegurarse de tener permisos de administrador si se instala Hazelcast como un servicio o en entornos protegidos.
+
+Configuración incorrecta de red (Modo distribuido):
+
+Si se trabaja con un clúster, verificar la configuración de red, asegurando que los nodos puedan encontrarse a través de la red.
+
+No puede conectarse al clúster:
+
+Asegúrarse de que el archivo de configuración esté correctamente configurado para aceptar nodos nuevos.
+
+-
 
 Demostración práctica
 
+A continuación se muestra una simulación en la que se observa cómo guardar, actualizar, consultar y eliminar productos en un inventario distribuido usando Hazelcast.
+
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.IMap;
+
+public class InventarioProductos {
+    public static void main(String[] args) {
+        // Inicia una instancia de Hazelcast
+        HazelcastInstance hazelcast = Hazelcast.newHazelcastInstance();
+
+        // Crear o acceder al mapa distribuido de productos
+        IMap<String, Integer> inventario = hazelcast.getMap("inventario");
+
+        // Agregar productos (clave: nombre del producto, valor: cantidad en stock)
+        inventario.put("Laptop", 10);
+        inventario.put("Mouse", 25);
+        inventario.put("Teclado", 15);
+
+        // Consultar stock de un producto
+        System.out.println("Stock de Mouse: " + inventario.get("Mouse"));
+
+        // Actualizar stock (por ejemplo, se vendieron 5 Mouses)
+        inventario.put("Mouse", inventario.get("Mouse") - 5);
+        System.out.println("Stock actualizado de Mouse: " + inventario.get("Mouse"));
+
+        // Eliminar un producto del inventario
+        inventario.remove("Teclado");
+        System.out.println("¿Teclado sigue en inventario? " + inventario.containsKey("Teclado"));
+
+        // Mostrar el inventario completo
+        System.out.println("Inventario actual: " + inventario);
+    }
+}
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -391,4 +590,6 @@ Demostración práctica
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Bibliografía:
+
+https://docs.hazelcast.com/
 
