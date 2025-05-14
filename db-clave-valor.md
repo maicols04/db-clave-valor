@@ -5,6 +5,7 @@
       <ul>
          <li><a href="#definicion">Definición</a></li>
          <li><a href="#ventajas">Ventajas</a></li>
+         <li><a href="#desventajas">Desventajas</a></li>
          <li><a href="#caso-de-uso">Caso de uso</a></li>
       </ul>
    </li>
@@ -64,15 +65,39 @@
    <br>
    <hr>
    <h2 id="definicion">Definición</h2>
-   <p>Contenido:</p>
+   <p>Las bases de datos clave-valor (Key-Value) son de tipo no relacionales. Utilizan un modelo simple de almacenamiento de datos. Gracias a sus características de alta eficacia en ejecución de lectura y escritura de datos; los desarrolladores tienen una gran eficacia al usar este tipo de bases de datos. Las bases de datos clave-valor son altamente divisibles; permiten el escalado horizontal a escalas que otros tipos de bases de datos no pueden alcanzar.
+   El modelo de bases de datos clave-valor almacena los datos usando pares, donde una clave única se asocia a un valor. Es como un diccionario: buscas una palabra, que sería la clave, y te devuelve su definición, que sería el valor.
+   Este modelo no maneja estructuras complejas ni relaciones entre datos. Es directo, rápido y fácil de entender. Solo necesitas conocer la clave para obtener el valor asociado.
+   </p>
    <br>
    <hr>
    <h2 id="ventajas">Ventajas</h2>
-   <p>Contenido:</p>
+   <p>
+   Primero, tiene un altísimo rendimiento en lecturas y escrituras. Como todo está asociado a una clave única, encontrar o guardar algo es cuestión de milisegundos.
+
+   Segundo, es muy fácil de escalar horizontalmente. Si necesitas manejar más datos o más peticiones, solo agregas más servidores y listo. Esto lo hace ideal para aplicaciones con mucho tráfico.
+
+   Y tercero, es perfecto para almacenar datos simples, como preferencias de usuario, carritos de compra o sesiones de usuario en aplicaciones web.
+   </p>
    <br>
    <hr>
-   <h2 id="caso-de-uso">Caso de uso</h2>
-   <p>Contenido:</p>
+   <h2 id="desventajas">Desventajas</h2>
+   <p>La primera es que no sirve para consultas complejas. Si necesitas buscar datos que cumplan ciertas condiciones o hacer combinaciones entre distintos datos, este modelo no te lo permite.
+   
+   La segunda desventaja es que no gestiona relaciones entre datos. No puedes establecer conexiones entre una tabla de clientes y una de pedidos, como se hace en una base relacional.
+   
+   Y tercero, solo puedes buscar por clave. Si no tienes la clave exacta, no puedes encontrar el dato.
+   </p>
+   <br>
+   <hr>
+   <h2 id="caso-de-uso">Casos de uso</h2>
+   <p>Se usa mucho en aplicaciones que necesitan guardar y recuperar información de forma rápida. Por ejemplo:
+   
+   - En un carrito de compras de una tienda virtual, donde cada usuario tiene una clave y su carrito como valor.
+   - En el almacenamiento de sesiones de usuario en una aplicación web, para validar rápidamente quién está conectado.
+   - En sistemas de caché, donde se guardan resultados de consultas para no tener que generarlos otra vez.
+   - Y en configuraciones rápidas de aplicaciones, donde los valores pueden cambiarse en tiempo real.
+   </p>
    <br>
 </article>
 <hr>
