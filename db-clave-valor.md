@@ -141,7 +141,7 @@
   <hr><br>
 
   <article id="etcd-intro">
-    <strong>Introducción:</strong><br><br>
+    <h2>Introducción:</h2><br>
     Etcd es una base de datos NoSQL distribuida, de código abierto, basada en el modelo clave-valor. Está diseñada para ser altamente disponible y consistente, lo que la hace ideal para entornos distribuidos. Se utiliza principalmente para:
     <ul>
       <li>Almacenamiento de configuración distribuida</li>
@@ -238,7 +238,7 @@ Carlos
   <hr><br>
 
   <article id="oracle-intro">
-    <h3>Introducción</h3>
+    <h2>Introducción</h2>
     <p>
       Oracle NoSQL Database es un sistema de gestión de bases de datos NoSQL desarrollado por Oracle Corporation, diseñado para manejar grandes volúmenes de datos no estructurados o semi-estructurados con alta escalabilidad, baja latencia y disponibilidad continua.
     </p>
@@ -250,7 +250,7 @@ Carlos
   <hr>
 
   <article id="oracle-ddl">
-    <h3>Explicación DDL</h3>
+    <h2>Explicación DDL</h2>
     <p><strong>El DDL (Data Definition Language)</strong> define la estructura de la base de datos:</p>
     <ul>
       <li><strong>Creación:</strong><br>
@@ -274,7 +274,7 @@ Carlos
   <hr>
 
   <article id="oracle-dml">
-    <h3>Explicación DML</h3>
+    <h2>Explicación DML</h2>
     <p>
       Oracle NoSQL no usa comandos SQL tradicionales para DML. En su lugar, se utilizan métodos de su API (Java, Python, etc.):
     </p>
@@ -294,7 +294,7 @@ Carlos
   <hr>
 
   <article id="oracle-problemas">
-    <h3>Problemas de la instalación</h3>
+    <h2>Problemas de la instalación</h2>
     <ul>
       <li><strong>Compatibilidad:</strong> Solo soportado oficialmente en Linux.<br>
         <em>Solución:</em> WSL, máquinas virtuales o Docker.
@@ -357,7 +357,7 @@ System.out.println("Nombre guardado: " + nombre);</code></pre>
 
   <br>
   <section id="hazelcast-ddl">
-    <strong>Explicación DDL:</strong><br>
+    <h2>Explicación DDL:</h2><br>
     En Hazelcast, no existe un lenguaje específico para definir estructuras de datos como en las bases de datos tradicionales. El concepto de DDL en Hazelcast se refiere más a crear e inicializar las estructuras de datos distribuidas dentro del clúster. Algunas de estas estructuras son:
     <ul>
       <li><strong>IMap:</strong> Similar a un mapa clave-valor en memoria.</li>
@@ -376,7 +376,7 @@ System.out.println("Nombre guardado: " + nombre);</code></pre>
 
   <br>
   <section id="hazelcast-dml">
-    <strong>Explicación DML:</strong><br>
+    <h2>Explicación DML:</h2><br>
     Hazelcast también tiene comandos DML que te permiten manipular (consultar, modificar o eliminar) los datos que ya están almacenados en sus estructuras distribuidas. <br><br>
     <ul>
       <li><strong>put:</strong> Inserta o actualiza una clave en un mapa distribuido.<br>
@@ -399,7 +399,7 @@ System.out.println("Nombre guardado: " + nombre);</code></pre>
 
   <br>
   <section id="hazelcast-problemas">
-    <strong>Problemas de la instalación:</strong><br>
+    <h2>Problemas de la instalación:</h2><br>
     <ul>
       <li><strong>Puerto ocupado:</strong> Hazelcast usa por defecto el puerto 5701. Si está ocupado, puede causar problemas.</li>
       <li><strong>Error al iniciar el clúster:</strong> Verifica que los puertos estén abiertos y accesibles.</li>
@@ -411,7 +411,7 @@ System.out.println("Nombre guardado: " + nombre);</code></pre>
 
   <br>
   <section id="hazelcast-demo">
-    <strong>Demostración práctica:</strong><br>
+    <h2>Demostración práctica:</h2>
     <pre><code>
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
