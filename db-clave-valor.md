@@ -559,16 +559,60 @@ IMap&lt;String, Integer&gt; inventario = hazelcast.getMap("inventario");
 <br><br>
 <article id="memcached">
    <hr>
-   <h1>Memcached: Santiago</h1>
+   <h1>Memcached</h1>
+   <hr>
+   <br>
+   <h2 id="memcached-intro">Introduccion</h2>
+   <p>Es un servidor de caché en memoria RAM diseñado
+      para acelerar aplicaciones web. Almacena datos
+      temporales en formato clave-valor (como un
+      diccionario), evitando consultas repetidas a bases de
+      datos o procesos lentos.
+   </p>   
+   <br>
    <hr>
    <h2 id="memcached-ddl">Explicación DDL</h2>
-   <p>-</p>
+   <p> 
+      Memcached no utiliza DDL, ya que no es una base de   datos relacional, sino un sistema de almacenamiento en memoria caché.
+
+
+      No existen comandos como CREATE, ALTER o DROP, porque no se definen estructuras fijas de datos. Todo se maneja de forma simple, sin necesidad de definir previamente el tipo o la forma del contenido.
+   </p>
+   <br>
+   <hr>
    <h2 id="memcached-dml">Explicación DML</h2>
-   <p>-</p>
+   <p>
+      Memcached permite manipular datos mediante comandos clave-valor. Estos comandos permiten realizar operaciones como almacenar, actualizar, consultar y eliminar datos en la memoria de forma rápida y eficiente.
+   </p>
+   <ul>
+      <li><strong>Crear/Remplazar (SET):</strong> Almacena un valor. si la clave existe la sobrescribe.</li>
+      <li><strong>Crear (ADD):</strong> Guarda el valor solo si la clave no existe</li>
+      <li><strong>Actualizar (REPLACE):</strong> Modifica el valor solo si la clave ya existe</li>
+      <li><strong>Eliminar (DELETE) :</strong> Borra un dato especifico con la memoria
+      </li>
+      <li><strong>Consultar (GET):</strong> Recupera el valor asociado a una clave</li>
+</ul>
+<br>
+<hr>
    <h2 id="memcached-problemas">Problemas de la instalación</h2>
-   <p>-</p>
+   <p>
+   <ul>
+      <li>Falta de librerías como libevent, esenciales para que Memcached funcione correctamente.</li>
+      <li>El puerto por defecto puede estar ocupado por otro servicio, impidiendo que Memcached se inicie (Puerto en uso 11211). </li>
+      <li>El usuario que ejecuta Memcached puede no tener permisos suficientes para acceder al puerto. </li>
+      <li>En distribuciones Linux, a veces el paquete no está disponible si no se actualizan los repositorios. </li>
+      <li>Memcached puede no ser compatible con sistemas operativos muy antiguos o versiones específicas.</li>
+      <li>Algunas aplicaciones necesitan un cliente (como php-memcached o python-memcached) que debe instalarse por separado. </li>
+   </ul>
+   </p>
+   <br>
+   <hr>
    <h2 id="memcached-demo">Demostración práctica</h2>
-   <p>-</p>
+   <p><strong> Objetivo: Demostrar cómo almacenar, agregar,   reemplazar y recuperar datos usando Memcached </strong></p>
+   <pre><code> set usuario:123 0 900 19 {"nombre": "Juan", "edad": 30}</code></pre>
+   <pre><code>add producto:456 0 900 22 {"nombre": "Laptop", "precio": 1200}</code></pre>
+   <pre><code>replace usuario:123 0 900 22 {"nombre":"Pedro", "edad": 35} </code></pre>
+   <pre><code>get usuario:123 </code></pre>
 </article>
 <hr>
 <br><br>
